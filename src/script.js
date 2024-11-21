@@ -20,7 +20,7 @@ ws.onclose = () => {
     console.log("Conexiunea WebSocket a fost inchisa.");
 };
 
-// Handler pentru login (când apasă Enter în câmpul de parolă)
+// Handler pentru login (cand apasa Enter in campul de parola)
 document.getElementById('password').addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         document.getElementById("login-button").click();
@@ -45,7 +45,7 @@ document.getElementById("login-button").onclick = () => {
 ws.onmessage = (event) => {
     const message = event.data;
 
-    let data = JSON.parse(message); // Presupunem că mesajul primit este un JSON
+    let data = JSON.parse(message); // Presupunem ca mesajul primit este un JSON
 
     switch (data.type_msg) {
         case 1: {
@@ -55,7 +55,7 @@ ws.onmessage = (event) => {
             break;
         }
         case 2: {
-            alert(`${data.content}`);
+            //alert(`${data.content}`);
             userList = JSON.parse(data.content);
             currentUser = userList[0];
             loginSection.style.display = "none";
@@ -63,7 +63,7 @@ ws.onmessage = (event) => {
             break;
         }
         case 3: {
-            //alert(`${data.content}`);
+            alert(`Utilizatorul este deja logat in chat!`);
             document.getElementById("username").value = '';
             document.getElementById("password").value = '';
             break;
@@ -71,14 +71,14 @@ ws.onmessage = (event) => {
         case 4: {
             let db = JSON.parse(data.content);
             db.forEach(obj => {
-                const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj și nume
+                const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj si nume
                 messageWrapper.className = "message-wrapper";
 
                 const senderElement = document.createElement("div"); // Numele utilizatorului
                 senderElement.textContent = obj.sender;
                 senderElement.className = "message-sender";
 
-                const messageElement = document.createElement("div"); // Conținutul mesajului
+                const messageElement = document.createElement("div"); // Continutul mesajului
                 messageElement.textContent = obj.content;
                 messageElement.className = obj.sender === currentUser ? "message from-client" : "message from-server";
                 senderElement.style.textAlign = obj.sender == currentUser? "end" : "left";
@@ -94,14 +94,14 @@ ws.onmessage = (event) => {
             
             let data_content = JSON.parse(data.content);
             if(data_content.sender!=currentUser){
-                const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj și nume
+                const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj si nume
                 messageWrapper.className = "message-wrapper";
     
                 const senderElement = document.createElement("div"); // Numele utilizatorului
                 senderElement.textContent = data_content.sender;
                 senderElement.className = "message-sender";
     
-                const messageElement = document.createElement("div"); // Conținutul mesajului
+                const messageElement = document.createElement("div"); // Continutul mesajului
                 messageElement.textContent = data_content.content;
                 messageElement.className = "message from-server";
     
@@ -124,7 +124,7 @@ ws.onmessage = (event) => {
     }
 };
 
-// Handler pentru apăsarea Enter la trimiterea unui mesaj
+// Handler pentru apasarea Enter la trimiterea unui mesaj
 document.getElementById("message").addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         document.getElementById("send-button").click();
@@ -139,10 +139,10 @@ document.getElementById("send-button").onclick = () => {
             sender: currentUser,
             content: message
         };
-        ws.send(JSON.stringify(s)); // Trimite mesajul către server
+        ws.send(JSON.stringify(s)); // Trimite mesajul catre server
         console.log("Mesaj trimis:", message);
 
-        const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj și nume
+        const messageWrapper = document.createElement("div"); // Wrapper pentru mesaj si nume
         messageWrapper.className = "message-wrapper";
 
         const senderElement = document.createElement("div"); // Numele utilizatorului
@@ -150,26 +150,26 @@ document.getElementById("send-button").onclick = () => {
         senderElement.className = "message-sender";
         senderElement.style.textAlign = "end";
 
-        const messageElement = document.createElement("div"); // Conținutul mesajului
+        const messageElement = document.createElement("div"); // Continutul mesajului
         messageElement.textContent = message;
         messageElement.className = "message from-client";
 
         messageWrapper.appendChild(senderElement);
         messageWrapper.appendChild(messageElement);
 
-        messagesDiv.appendChild(messageWrapper); // Adaugă mesajul în secțiunea de mesaje
+        messagesDiv.appendChild(messageWrapper); // Adauga mesajul in sectiunea de mesaje
         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll automat catre cel mai recent mesaj
 
         document.getElementById("message").value = ""; // Clear input
     }
 };
 
-// Detectează închiderea sau schimbarea paginii
+// Detecteaza inchiderea sau schimbarea paginii
 window.addEventListener('beforeunload', function (event) {
     ws.send("close");
 });
 
-// Detectează închiderea efectivă a paginii
+// Detecteaza inchiderea efectiva a paginii
 window.addEventListener('unload', function () {
     ws.send("close");
 });
@@ -177,7 +177,7 @@ function updateUserStatus(allUser,connectedUsers) {
     // Golim lista de utilizatori
     statusUsersDiv.innerHTML = '';
 
-    // Adăugăm un status pentru fiecare utilizator
+    // Adaugam un status pentru fiecare utilizator
     allUser.forEach(user => {
         const userDiv = document.createElement('div');
         userDiv.classList.add('user-status');
