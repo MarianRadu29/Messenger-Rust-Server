@@ -1,0 +1,190 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        .container {
+            margin-left: 200px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            overflow: hidden;
+            flex-direction: column;
+            height: 90vh; /* Ajustează pentru a face interfața compactă și responsivă */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #auth-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        #auth-section input, #auth-section button {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #auth-section button {
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #auth-section button:hover {
+            background: #0056b3;
+        }
+
+        #chat-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+
+        #messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #messages::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 4px;
+        }
+
+        #messages::-webkit-scrollbar-thumb:hover {
+            background-color: #888;
+        }
+
+        .message {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .message-sender {/*numele celui ce a trimis respectivul mesaj*/
+            font-weight: bold;
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .from-client {
+            background:#007BFF;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .from-server{
+            background:darkgray;
+            color: white;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        #message-bar {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        #message-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #message-bar button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        #message-bar button:hover {
+            background: #0056b3;
+        }
+
+       /* Container pentru statusul utilizatorilor */
+#status-users {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+/* Stilizarea fiecărui utilizator cu statusul */
+.user-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Cercul care va indica statusul */
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Stil pentru cercurile de conectat și offline */
+.connected {
+    background-color: green;
+}
+
+.offline {
+    background-color: grey;
+}
+
+#status-users p {
+    font-size: 14px;
+    margin: 0;
+}
